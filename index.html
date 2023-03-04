@@ -235,4 +235,97 @@
     
 
   </body>
+  <script type="module">
+
+    const searchFilterOne=document.getElementById("search-filter-1").value;
+    const searchFilterTwo=document.getElementById("search-filter-2").value;
+    const searchFilterThree=document.getElementById("search-filter-3").value;
+    const searchFilterFour=document.getElementById("search-filter-4").value;
+    const searchFilterFive=document.getElementById("search-filter-5").value;
+    const searchFilterOneText=document.getElementById("search-filter-1-text").value;
+    const searchFilterTwoText=document.getElementById("search-filter-2-text").value;
+    const searchFilterThreeText=document.getElementById("search-filter-3-text").value;
+    const searchFilterFourText=document.getElementById("search-filter-4-text").value;
+    const searchFilterFiveTExt=document.getElementById("search-filter-5-text").value;
+    
+    const btnSearch=document.querySelector(".btn-search");
+    
+    
+    
+    btnSearch.addEventListener('click', function(e){
+      e.preventDefault()
+      const searchFilterOne=document.getElementById("search-filter-1").value;
+      const searchFilterOneText=document.getElementById("search-filter-1-text").value;
+      document.getElementById('myTable').innerHTML=""
+      loadData(searchFilterOne, searchFilterOneText)
+    })
+    
+    import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
+    
+    const supabaseUrl = 'https://aevibblwimzhlpidnbnn.supabase.co'
+    const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI"
+    const supabase = createClient(supabaseUrl, supabaseKey);
+    
+    
+          let data;
+          
+          async function loadData() {
+          const searchFilterOne=document.getElementById("search-filter-1").value;
+          const searchFilterOneText=document.getElementById("search-filter-1-text").value;
+          const searchFilterTwo=document.getElementById("search-filter-2").value;
+          const searchFilterTwoText=document.getElementById("search-filter-2-text").value;
+      
+          const res= await fetch('https://aevibblwimzhlpidnbnn.supabase.co/rest/v1/toolDB',{
+            headers: {
+              apikey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI',
+              authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI'
+            } 
+          });
+          let query = supabase
+            .from('toolDB')
+            .select('*')
+          
+    
+    
+          console.log(searchFilterOne,searchFilterOneText,searchFilterTwo,searchFilterTwoText);
+    
+    
+          if (searchFilterOneText&&searchFilterTwoText) {
+            console.log('Option 2');
+        
+            query=query.or(`${searchFilterOne}.like.%${searchFilterOneText}%, ${searchFilterTwo}.like.%${searchFilterTwoText}%`)}
+    
+          const { data, error } = await query
+    
+            buildTable(data)
+    
+       
+         }
+    
+         loadData();
+    
+          //build table
+          function buildTable(data){
+            let table=document.getElementById('myTable')
+            console.log(`The results found: ${data.length}`);
+            for (let i=0; i<data.length; i++){
+              let row=`<tr>
+                          <td>${data[i].ID}</td>
+                          <td>${data[i].DESCRIPTION_ENG}</td>
+                          <td></td>
+                          <td>${data[i].PART_NUMBER_AH}</td>
+                          <td>${data[i].PART_NUMBER_MNF}</td>
+                          <td>${data[i].SERIAL_NUMBER}</td>
+                          <td>${data[i].ECKE_ID}</td>
+                          <td>${data[i].CONDITION}</td>
+                          <td>${data[i].CURRENT_STATUS}</td>
+                      </tr>`
+    
+                      // console.log(row);
+              table.innerHTML+=row
+            }
+    
+          }
+        </script>
+    
 </html>
