@@ -89,138 +89,144 @@
         .tool-issue-block{
           background-color: rgb(199, 138, 64);
         }
+        fieldset {
+            border: 2px solid #0000005e;
+            margin: 0 50px 0 50px;
+        }
+        legend {
+            padding: 0 20px;
+            color: #000000;
+        }
       </style>
 </head>
 <body>
-    <h1>Tool management system</h1>
+    <!-- <h1>Tool management system</h1> -->
 
     <nav >
-      
       <div class="nav-block search-block center">
+        <fieldset>
+            <legend>Search</legend>
+            <form >
+                <p class="text-element">
+                  <select name="type" id="search-filter-1">
+                    <option value="ID" selected="selected">ID</option>
+                    <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
+                    <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
+                    <option value="PARAMETERS">PARAMETERS</option>
+                    <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
+                    <option value="SHELF">SHELF</option>
+                    <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
+                    <option value="CONDITION">CONDITION</option>
+                    <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
+                    <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
+                    <option value="ECKE_ID">ECKE_ID</option>
+                    <option value="STORE_SHOP">STORE_SHOP</option>
+                    <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
+                    <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
+                    <option value="CURRENT_STATUS">CURRENT_STATUS</option>
+                  </select>
+                  <input type="text" id="search-filter-1-text" name="lname" value="1">
+                </p>
+                <p class="text-element">
+                  <select name="type" id="search-filter-2">
+                    <option value="ID" selected="selected">ID</option>
+                    <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
+                    <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
+                    <option value="PARAMETERS">PARAMETERS</option>
+                    <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
+                    <option value="SHELF">SHELF</option>
+                    <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
+                    <option value="CONDITION">CONDITION</option>
+                    <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
+                    <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
+                    <option value="ECKE_ID">ECKE_ID</option>
+                    <option value="STORE_SHOP">STORE_SHOP</option>
+                    <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
+                    <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
+                    <option value="CURRENT_STATUS">CURRENT_STATUS</option>
+                  </select>
+                  <input type="text" id="search-filter-2-text" name="lname">
+                </p>
+                <p class="text-element">
+                  <select name="type" id="search-filter-3">
+                    <option value="ID" selected="selected">ID</option>
+                    <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
+                    <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
+                    <option value="PARAMETERS">PARAMETERS</option>
+                    <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
+                    <option value="SHELF">SHELF</option>
+                    <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
+                    <option value="CONDITION">CONDITION</option>
+                    <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
+                    <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
+                    <option value="ECKE_ID">ECKE_ID</option>
+                    <option value="STORE_SHOP">STORE_SHOP</option>
+                    <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
+                    <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
+                    <option value="CURRENT_STATUS">CURRENT_STATUS</option>
+                  </select>
+                  <input type="text" id="search-filter-3-text" name="lname">
+                </p>
+                <p class="text-element">
+                  <select name="type" id="search-filter-4">
+                    <option value="ID" selected="selected">ID</option>
+                    <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
+                    <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
+                    <option value="PARAMETERS">PARAMETERS</option>
+                    <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
+                    <option value="SHELF">SHELF</option>
+                    <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
+                    <option value="CONDITION">CONDITION</option>
+                    <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
+                    <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
+                    <option value="ECKE_ID">ECKE_ID</option>
+                    <option value="STORE_SHOP">STORE_SHOP</option>
+                    <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
+                    <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
+                    <option value="CURRENT_STATUS">CURRENT_STATUS</option>
+                  </select>
+                  <input type="text" id="search-filter-4-text" name="lname">
+                </p>
+                <p class="text-element">
+                  <select name="type" id="search-filter-5">
+                    <option value="ID">ID</option>
+                    <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
+                    <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
+                    <option value="PARAMETERS">PARAMETERS</option>
+                    <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
+                    <option value="SHELF">SHELF</option>
+                    <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
+                    <option value="CONDITION">CONDITION</option>
+                    <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
+                    <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
+                    <option value="ECKE_ID">ECKE_ID</option>
+                    <option value="STORE_SHOP">STORE_SHOP</option>
+                    <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
+                    <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
+                    <option value="CURRENT_STATUS">CURRENT_STATUS</option>
+                  </select>
+                  <input type="text" id="search-filter-5-text" name="lname">
+                </p>
+                <button class="btn-search">Search</button>
+              </form>
+        </fieldset>
 
-        <form >
-          <p class="text-element">
-            <select name="type" id="search-filter-1">
-              <option value="ID" selected="selected">ID</option>
-              <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
-              <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
-              <option value="PARAMETERS">PARAMETERS</option>
-              <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
-              <option value="SHELF">SHELF</option>
-              <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
-              <option value="CONDITION">CONDITION</option>
-              <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
-              <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
-              <option value="ECKE_ID">ECKE_ID</option>
-              <option value="STORE_SHOP">STORE_SHOP</option>
-              <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
-              <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
-              <option value="CURRENT_STATUS">CURRENT_STATUS</option>
-            </select>
-            <input type="text" id="search-filter-1-text" name="lname" value="1">
-          </p>
-          <p class="text-element">
-            <select name="type" id="search-filter-2">
-              <option value="ID" selected="selected">ID</option>
-              <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
-              <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
-              <option value="PARAMETERS">PARAMETERS</option>
-              <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
-              <option value="SHELF">SHELF</option>
-              <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
-              <option value="CONDITION">CONDITION</option>
-              <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
-              <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
-              <option value="ECKE_ID">ECKE_ID</option>
-              <option value="STORE_SHOP">STORE_SHOP</option>
-              <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
-              <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
-              <option value="CURRENT_STATUS">CURRENT_STATUS</option>
-            </select>
-            <input type="text" id="search-filter-2-text" name="lname">
-          </p>
-          <p class="text-element">
-            <select name="type" id="search-filter-3">
-              <option value="ID" selected="selected">ID</option>
-              <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
-              <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
-              <option value="PARAMETERS">PARAMETERS</option>
-              <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
-              <option value="SHELF">SHELF</option>
-              <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
-              <option value="CONDITION">CONDITION</option>
-              <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
-              <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
-              <option value="ECKE_ID">ECKE_ID</option>
-              <option value="STORE_SHOP">STORE_SHOP</option>
-              <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
-              <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
-              <option value="CURRENT_STATUS">CURRENT_STATUS</option>
-            </select>
-            <input type="text" id="search-filter-3-text" name="lname">
-          </p>
-          <p class="text-element">
-            <select name="type" id="search-filter-4">
-              <option value="ID" selected="selected">ID</option>
-              <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
-              <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
-              <option value="PARAMETERS">PARAMETERS</option>
-              <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
-              <option value="SHELF">SHELF</option>
-              <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
-              <option value="CONDITION">CONDITION</option>
-              <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
-              <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
-              <option value="ECKE_ID">ECKE_ID</option>
-              <option value="STORE_SHOP">STORE_SHOP</option>
-              <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
-              <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
-              <option value="CURRENT_STATUS">CURRENT_STATUS</option>
-            </select>
-            <input type="text" id="search-filter-4-text" name="lname">
-          </p>
-          <p class="text-element">
-            <select name="type" id="search-filter-5">
-              <option value="ID">ID</option>
-              <option value="DESCRIPTION_ENG">DESCRIPTION_ENG</option>
-              <option value="DESCRIPTION_RUS">DESCRIPTION_RUS</option>
-              <option value="PARAMETERS">PARAMETERS</option>
-              <option value="PART_NUMBER_AH">PART_NUMBER_AH</option>
-              <option value="SHELF">SHELF</option>
-              <option value="PART_NUMBER_MNF">PART_NUMBER_MNF</option>
-              <option value="CONDITION">CONDITION</option>
-              <option value="DUE_DATE_OF_VERIFICATION">DUE_DATE_OF_VERIFICATION</option>
-              <option value="SERIAL_NUMBER">SERIAL_NUMBER</option>
-              <option value="ECKE_ID">ECKE_ID</option>
-              <option value="STORE_SHOP">STORE_SHOP</option>
-              <option value="TYPE_OF_VERIFICATION">TYPE_OF_VERIFICATION</option>
-              <option value="PERIOD_OF_VERIFICATION_DAYS">PERIOD_OF_VERIFICATION_DAYS</option>
-              <option value="CURRENT_STATUS">CURRENT_STATUS</option>
-            </select>
-            <input type="text" id="search-filter-5-text" name="lname">
-          </p>
-          <button class="btn-search">Search</button>
-        </form>
-      </div>
-      <div class="nav-block information-block">
-        <p>Additional infomation</p>
-      </div>
-      <div class="nav-block tool-issue-block">
-        <p>Tool actions</p>
-      </div>
+        <fieldset>
+            <legend>Additional infomation</legend>
+        </fieldset>
     </nav>
 
     <div class="container">
     
       <table class="center">
         <tr>
-          <th>ID</th>
-          <th>Description (Eng)</th>
-          <th>Description (Rus)</th>
-          <th>Part_number (AH)</th>
-          <th>Part number (MNF)</th>
+          <th>Row</th>
+          <th>Location</th>
+          <th>Barcode</th>
+          <th>Parent barcode</th>
+          <th>Part number</th>
           <th>Serial number</th>
-          <th>ECKE_ID</th>
+          <th>Calibration due date</th>
           <th>Condition</th>
           <th>Current status</th>
         </tr>
@@ -247,7 +253,6 @@
     const searchFilterThreeText=document.getElementById("search-filter-3-text").value;
     const searchFilterFourText=document.getElementById("search-filter-4-text").value;
     const searchFilterFiveTExt=document.getElementById("search-filter-5-text").value;
-    
     const btnSearch=document.querySelector(".btn-search");
     
     
@@ -285,18 +290,14 @@
             .from('toolDB')
             .select('*')
           
+            query=query.like(searchFilterOne,`%${searchFilterOneText}%`).like(searchFilterTwo,`%${searchFilterTwoText}%`)
+
+        //   console.log(searchFilterOne,searchFilterOneText,searchFilterTwo,searchFilterTwoText);
     
-    
-          console.log(searchFilterOne,searchFilterOneText,searchFilterTwo,searchFilterTwoText);
-    
-    
-          if (searchFilterOneText&&searchFilterTwoText) {
-            console.log('Option 2');
-        
-            query=query.or(`${searchFilterOne}.like.%${searchFilterOneText}%, ${searchFilterTwo}.like.%${searchFilterTwoText}%`)}
+     
+        //     // query=query.and(`${searchFilterOne}.like.%${searchFilterOneText}%, ${searchFilterTwo}.like.%${searchFilterTwoText?searchFilterTwoText:undefined}%`)}
     
           const { data, error } = await query
-    
             buildTable(data)
     
        
