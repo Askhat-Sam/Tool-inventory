@@ -10,7 +10,10 @@
           height: 100vh;
           /* display: flex; */
           align-items: center;
-          background: linear-gradient(to top left, #28b487, #7dd56f);
+          /* background: linear-gradient(to top left, #28b487, #7dd56f); */
+          background-color: rgb(214, 214, 214);
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 12px;
         }
         h1 {
           font-family: sans-serif;
@@ -50,7 +53,7 @@
           font-size: 12px;
         }
         th {
-          background-color: rgb(203, 207, 207);
+          background-color: #76b5c5;
           text-align: left;
         }
         .center {
@@ -97,6 +100,40 @@
             padding: 0 20px;
             color: #000000;
         }
+        .grid-container {
+            margin-top: 30px;
+            /* width: 100%; */
+            box-sizing: border-box;
+            
+        }
+        .grid-header {
+            display: grid;
+            background-color: black;
+            border: 1px solid black;
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+            grid-gap: 1px;
+            font-weight: bold;
+        }
+        .grid-body {
+            display: grid;
+            background-color: rgb(146, 146, 146);
+            grid-gap: 1px;
+            border-left: 1px solid rgb(146, 146, 146);
+            border-right: 1px solid rgb(146, 146, 146);
+            border-bottom: 1px solid rgb(146, 146, 146);
+            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+        }
+        .grid-item-header {
+            /* border: 1px solid rgb(117, 116, 116); */
+            padding: 5px;
+            background-color: cadetblue;
+           
+        }
+        .grid-item-body {
+            /* border: 1px solid rgb(117, 116, 116); */
+            padding: 5px;
+            background-color: rgb(255, 255, 255);
+        }
       </style>
 </head>
 <body>
@@ -112,11 +149,11 @@
                     <option value="Row" selected="selected">Row</option>
                     <option value="Location">Location</option>
                     <option value="Barcode">Barcode</option>
-                    <option value="Parent barcode">Parent barcode</option>
-                    <option value="Item name">Item name</option>
-                    <option value="Part number">Part number</option>
-                    <option value="Serial number">Serial number</option>
-                    <option value="Calibration due date">Calibration due date</option>
+                    <option value="Parent_barcode">Parent barcode</option>
+                    <option value="Item_name">Item name</option>
+                    <option value="Part_number">Part number</option>
+                    <option value="Serial_number">Serial number</option>
+                    <option value="Calibration_due_date">Calibration due date</option>
                     <option value="Status">Status</option>
                   </select>
                   <input type="text" id="search-filter-1-text" name="lname">
@@ -126,11 +163,11 @@
                         <option value="Row" selected="selected">Row</option>
                         <option value="Location">Location</option>
                         <option value="Barcode">Barcode</option>
-                        <option value="Parent barcode">Parent barcode</option>
-                        <option value="Item name">Item name</option>
-                        <option value="Part number">Part number</option>
-                        <option value="Serial number">Serial number</option>
-                        <option value="Calibration due date">Calibration due date</option>
+                        <option value="Parent_barcode">Parent barcode</option>
+                        <option value="Item_name">Item name</option>
+                        <option value="Part_number">Part number</option>
+                        <option value="Serial_number">Serial number</option>
+                        <option value="Calibration_due_date">Calibration due date</option>
                         <option value="Status">Status</option>
                       </select>
                   <input type="text" id="search-filter-2-text" name="lname">
@@ -154,7 +191,7 @@
                         <option value="Row" selected="selected">Row</option>
                         <option value="Location">Location</option>
                         <option value="Barcode">Barcode</option>
-                        <option value="Parent barcode">Parent barcode</option>
+                        <option value="Parent_barcode">Parent barcode</option>
                         <option value="Item name">Item name</option>
                         <option value="Part number">Part number</option>
                         <option value="Serial number">Serial number</option>
@@ -208,6 +245,43 @@
       </table>
     </div>
     
+
+    <div class="grid-container">
+        <div class="grid-header">
+            <div class="grid-item-header"></div>
+            <div class="grid-item-header">Row</div>
+            <div class="grid-item-header">Location</div>
+            <div class="grid-item-header">Parent barcode</div>
+            <div class="grid-item-header">Item name</div>
+            <div class="grid-item-header">Part number</div>
+            <div class="grid-item-header">Serial number</div>
+            <div class="grid-item-header">Calibration due date</div>
+            <div class="grid-item-header">Status</div>
+        </div>
+        <div class="grid-body">
+            <div class="grid-item-body">1</div>
+            <div class="grid-item-body">2</div>
+            <div class="grid-item-body">3</div>
+            <div class="grid-item-body">4</div>
+            <div class="grid-item-body">5</div>
+            <div class="grid-item-body">6</div>
+            <div class="grid-item-body">7</div>
+            <div class="grid-item-body">8</div>
+            <div class="grid-item-body">9</div>
+        </div>
+        <div class="grid-body">
+            <div class="grid-item-body">1</div>
+            <div class="grid-item-body">2</div>
+            <div class="grid-item-body">3</div>
+            <div class="grid-item-body">4</div>
+            <div class="grid-item-body">5</div>
+            <div class="grid-item-body">6</div>
+            <div class="grid-item-body">7</div>
+            <div class="grid-item-body">8</div>
+            <div class="grid-item-body">9</div>
+        </div>
+        
+    </div>
     
 
   </body>
@@ -256,20 +330,14 @@
               authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI'
             } 
           });
-          let query = supabase
+          let query1 = supabase
             .from('toolDB')
             .select('*')
           
-            query=searchFilterOneText ? query.eq(searchFilterOne, searchFilterOneText) : query
-            console.log(query);
-            // query=query + searchFilterOneText ? `.like('Status',${searchFilterOneText})`:`.like('Status','%Broken%')`
-            // query=query.like(searchFilterOne,`%${searchFilterOneText}%`).like(searchFilterTwo,`%${searchFilterTwoText?searchFilterTwoText:undefined}%`)
-
-            console.log(searchFilterOne,searchFilterOneText,searchFilterTwo,searchFilterTwoText);
-    
-     
-        //     // query=query.and(`${searchFilterOne}.like.%${searchFilterOneText}%, ${searchFilterTwo}.like.%${searchFilterTwoText?searchFilterTwoText:undefined}%`)}
-    
+            let query=searchFilterOneText ? query1.like(searchFilterOne, `%${searchFilterOneText}%`) : query1
+                query=searchFilterOneText&&searchFilterTwoText ? query1.like(searchFilterOne, `%${searchFilterOneText}%`).like(searchFilterTwo, `%${searchFilterTwoText}%`) : query1
+           
+           
           const { data, error } = await query
             buildTable(data)
     
