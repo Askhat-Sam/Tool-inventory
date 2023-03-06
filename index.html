@@ -101,7 +101,7 @@
             color: #000000;
         }
         .grid-container {
-            margin-top: 30px;
+            margin-top: 10px;
             /* width: 100%; */
             box-sizing: border-box;
             
@@ -110,7 +110,7 @@
             display: grid;
             background-color: black;
             border: 1px solid black;
-            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
             grid-gap: 1px;
             font-weight: bold;
         }
@@ -121,19 +121,44 @@
             border-left: 1px solid rgb(146, 146, 146);
             border-right: 1px solid rgb(146, 146, 146);
             border-bottom: 1px solid rgb(146, 146, 146);
-            grid-template-columns: 1fr 1fr 1.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+            text-overflow: clip;
         }
+        
         .grid-item-header {
             /* border: 1px solid rgb(117, 116, 116); */
             padding: 5px;
             background-color: cadetblue;
            
         }
-        .grid-item-body {
-            /* border: 1px solid rgb(117, 116, 116); */
-            padding: 5px;
-            background-color: rgb(255, 255, 255);
+        input:focus {
+            outline: none;
+            border-color: rgb(78, 202, 240);
         }
+        .grid-item-header-checkbox {
+            position: relative;
+        }
+        .edit {
+            color:rgb(0, 0, 0);
+            width: 17px;
+            position: relative;
+            top: 1px;
+        }
+        .edit:hover{
+            color:red;
+        }
+        .container-text {
+            text-align: center;
+        }
+        
+        .grid-item-body {
+            padding: 5px;
+            background-color: rgb(255, 255, 255) !important;
+        }
+        .grid-item-body:hover {
+            background-color: rgb(138, 186, 214) !important;
+        }
+       
       </style>
 </head>
 <body>
@@ -221,67 +246,42 @@
         <fieldset>
             <legend>Additional infomation</legend>
         </fieldset>
+        
     </nav>
 
     <div class="container">
-    
-      <table class="center">
-        <tr>
-          <th>Row</th>
-          <th>Location</th>
-          <th>Barcode</th>
-          <th>Parent barcode</th>
-          <th>Item name</th>
-          <th>Part number</th>
-          <th>Serial number</th>
-          <th>Calibration due date</th>
-          <th>Status</th>
-        </tr>
+        <div class="container-text">
+            <p class="search_result">Here</p>
+        </div>
+        <div class="grid-container">
+            <div class="grid-header">
+                <div class="grid-item-header">
+                    <div>
+                        <input type="checkbox" class="grid-header-inbox inbox">
+                          <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></span>
+                    </div>
+                </div>
+                <div class="grid-item-header">Row</div>
+                <div class="grid-item-header">Location</div>
+                <div class="grid-item-header">Parent barcode</div>
+                <div class="grid-item-header">Item name</div>
+                <div class="grid-item-header">Part number</div>
+                <div class="grid-item-header">Serial number</div>
+                <div class="grid-item-header">Calibration due date</div>
+                <div class="grid-item-header">Status</div>
+            </div>
 
-        <tbody id="myTable">
+            <div class="grid-body">
+                
+            </div>  
+        </div>
 
-        </tbody>
-       
-      </table>
+
     </div>
     
 
-    <div class="grid-container">
-        <div class="grid-header">
-            <div class="grid-item-header"></div>
-            <div class="grid-item-header">Row</div>
-            <div class="grid-item-header">Location</div>
-            <div class="grid-item-header">Parent barcode</div>
-            <div class="grid-item-header">Item name</div>
-            <div class="grid-item-header">Part number</div>
-            <div class="grid-item-header">Serial number</div>
-            <div class="grid-item-header">Calibration due date</div>
-            <div class="grid-item-header">Status</div>
-        </div>
-        <div class="grid-body">
-            <div class="grid-item-body">1</div>
-            <div class="grid-item-body">2</div>
-            <div class="grid-item-body">3</div>
-            <div class="grid-item-body">4</div>
-            <div class="grid-item-body">5</div>
-            <div class="grid-item-body">6</div>
-            <div class="grid-item-body">7</div>
-            <div class="grid-item-body">8</div>
-            <div class="grid-item-body">9</div>
-        </div>
-        <div class="grid-body">
-            <div class="grid-item-body">1</div>
-            <div class="grid-item-body">2</div>
-            <div class="grid-item-body">3</div>
-            <div class="grid-item-body">4</div>
-            <div class="grid-item-body">5</div>
-            <div class="grid-item-body">6</div>
-            <div class="grid-item-body">7</div>
-            <div class="grid-item-body">8</div>
-            <div class="grid-item-body">9</div>
-        </div>
-        
-    </div>
+    
     
 
   </body>
@@ -305,7 +305,7 @@
       e.preventDefault()
       const searchFilterOne=document.getElementById("search-filter-1").value;
       const searchFilterOneText=document.getElementById("search-filter-1-text").value;
-      document.getElementById('myTable').innerHTML=""
+      document.querySelector('.grid-body').innerHTML=""
       loadData(searchFilterOne, searchFilterOneText)
     })
     
@@ -338,7 +338,7 @@
                 query=searchFilterOneText&&searchFilterTwoText ? query1.like(searchFilterOne, `%${searchFilterOneText}%`).like(searchFilterTwo, `%${searchFilterTwoText}%`) : query1
            
            
-          const { data, error } = await query
+          const { data, error } = await query //Here to change to query
             buildTable(data)
     
        
@@ -348,22 +348,23 @@
     
           //build table
           function buildTable(data){
-            let table=document.getElementById('myTable')
+            let table=document.querySelector('.grid-body')
             console.log(`The results found: ${data.length}`);
             for (let i=0; i<data.length; i++){
-              let row=`<tr>
-                          <td>${data[i].Row}</td>
-                          <td>${data[i].Location}</td>
-                          <td>${data[i].Barcode}</td>
-                          <td>${data[i].Parent_barcode}</td>
-                          <td>${data[i].Item_name}</td>
-                          <td>${data[i].Part_number}</td>
-                          <td>${data[i].Serial_number}</td>
-                          <td>${data[i].Calibration_due_date}</td>
-                          <td>${data[i].Status}</td>
-                      </tr>`
-    
-                      // console.log(row);
+              let row=`<div class="grid-item-body">
+                            <input type="checkbox" class="grid-header-inbox inbox">
+                            <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></span>
+                        </div>
+                        <div class="grid-item-body">${data[i].Row}</div>
+                        <div class="grid-item-body">${data[i].Location}</div>
+                        <div class="grid-item-body">${data[i].Parent_barcode}</div>
+                        <div class="grid-item-body">${data[i].Item_name}</div>
+                        <div class="grid-item-body">${data[i].Part_number}</div>
+                        <div class="grid-item-body">${data[i].Serial_number}</div>
+                        <div class="grid-item-body">${data[i].Calibration_due_date}</div>
+                        <div class="grid-item-body">${data[i].Status}</div>`
+
               table.innerHTML+=row
             }
     
