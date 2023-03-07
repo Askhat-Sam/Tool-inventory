@@ -110,7 +110,7 @@
             display: grid;
             background-color: black;
             border: 1px solid black;
-            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
             grid-gap: 1px;
             font-weight: bold;
         }
@@ -120,7 +120,7 @@
         }
         .grid-row {
             display: grid;
-            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
+            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
             grid-gap: 1px;
             border-left: 1px solid rgb(146, 146, 146);
             border-right: 1px solid rgb(146, 146, 146);
@@ -157,12 +157,34 @@
             background-color: rgb(255, 255, 255) !important;
         }
         .grid-row:hover>div {
-            background-color: rgb(201, 199, 199) !important;
+            background-color: #edeff0 !important;
         }
         .search_result {
             font-weight: bold;
         }
-        
+        .action-window {
+            background-color: antiquewhite;
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            width: 500px;
+        }
+        .action-header {
+            background-color: #666666;
+        }
+        .action-body {
+            background-color: #979797;
+            height: 100px;
+        }
+        .action-body-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 1px;
+        }
+        .action-item {
+            background-color: white;
+            
+        }
        
       </style>
 </head>
@@ -250,6 +272,7 @@
 
         <fieldset>
             <legend>Additional infomation</legend>
+            
         </fieldset>
         
     </nav>
@@ -269,6 +292,7 @@
                 </div>
                 <div class="grid-item-header">Row</div>
                 <div class="grid-item-header">Location</div>
+                <div class="grid-item-header">Barcode</div>
                 <div class="grid-item-header">Parent barcode</div>
                 <div class="grid-item-header">Item name</div>
                 <div class="grid-item-header">Part number</div>
@@ -280,6 +304,18 @@
             <div class="grid-body">
                 
             </div>  
+            <div class="action-window">
+                <div class="action-header">Selected items</div>
+                <div class="action-body">
+                    <div class="action-body-header">
+                        <div class="action-item">Barcode</div>
+                        <div class="action-item">Location</div>
+                        <div class="action-item">Part number</div>
+                        <div class="action-item">Serial number</div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   </body>
@@ -356,6 +392,7 @@
                         </div>
                         <div class="grid-item-body">${data[i].Row}</div>
                         <div class="grid-item-body">${data[i].Location}</div>
+                        <div class="grid-item-body">${data[i].Barcode}</div>
                         <div class="grid-item-body">${data[i].Parent_barcode}</div>
                         <div class="grid-item-body">${data[i].Item_name}</div>
                         <div class="grid-item-body">${data[i].Part_number}</div>
