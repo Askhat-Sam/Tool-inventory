@@ -115,16 +115,17 @@
             font-weight: bold;
         }
         .grid-body {
-            display: grid;
             background-color: rgb(146, 146, 146);
+            text-overflow: clip;
+        }
+        .grid-row {
+            display: grid;
+            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
             grid-gap: 1px;
             border-left: 1px solid rgb(146, 146, 146);
             border-right: 1px solid rgb(146, 146, 146);
             border-bottom: 1px solid rgb(146, 146, 146);
-            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr;
-            text-overflow: clip;
         }
-        
         .grid-item-header {
             /* border: 1px solid rgb(117, 116, 116); */
             padding: 5px;
@@ -155,9 +156,13 @@
             padding: 5px;
             background-color: rgb(255, 255, 255) !important;
         }
-        .grid-item-body:hover {
-            background-color: rgb(138, 186, 214) !important;
+        .grid-row:hover>div {
+            background-color: rgb(201, 199, 199) !important;
         }
+        .search_result {
+            font-weight: bold;
+        }
+        
        
       </style>
 </head>
@@ -251,7 +256,7 @@
 
     <div class="container">
         <div class="container-text">
-            <p class="search_result">Here</p>
+            <p class="search_result"></p>
         </div>
         <div class="grid-container">
             <div class="grid-header">
@@ -276,14 +281,7 @@
                 
             </div>  
         </div>
-
-
     </div>
-    
-
-    
-    
-
   </body>
   <script type="module">
 
@@ -303,6 +301,7 @@
     
     btnSearch.addEventListener('click', function(e){
       e.preventDefault()
+      document.querySelector('.search_result').textContent=`Searching...`;
       const searchFilterOne=document.getElementById("search-filter-1").value;
       const searchFilterOneText=document.getElementById("search-filter-1-text").value;
       document.querySelector('.grid-body').innerHTML=""
@@ -340,8 +339,7 @@
            
           const { data, error } = await query //Here to change to query
             buildTable(data)
-    
-       
+            document.querySelector('.search_result').textContent=`Result found: ${data.length}`;
          }
     
          loadData();
@@ -349,9 +347,9 @@
           //build table
           function buildTable(data){
             let table=document.querySelector('.grid-body')
-            console.log(`The results found: ${data.length}`);
+            
             for (let i=0; i<data.length; i++){
-              let row=`<div class="grid-item-body">
+              let row=`<div class="grid-row"><div class="grid-item-body">
                             <input type="checkbox" class="grid-header-inbox inbox">
                             <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></span>
@@ -363,12 +361,13 @@
                         <div class="grid-item-body">${data[i].Part_number}</div>
                         <div class="grid-item-body">${data[i].Serial_number}</div>
                         <div class="grid-item-body">${data[i].Calibration_due_date}</div>
-                        <div class="grid-item-body">${data[i].Status}</div>`
+                        <div class="grid-item-body">${data[i].Status}</div></div>`
 
               table.innerHTML+=row
             }
     
           }
+        
         </script>
     
 </html>
