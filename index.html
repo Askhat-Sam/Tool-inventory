@@ -168,9 +168,14 @@
             bottom: 5px;
             right: 5px;
             width: 500px;
+            filter: drop-shadow(-4px -4px 4px hsla(0, 0%, 0%, 0.163));
+            border: 1px solid rgb(112, 112, 112);
         }
         .action-header {
+            display: flex;
+            justify-content: space-between;
             background-color: #666666;
+            color: white;
         }
         .action-body {
             background-color: #979797;
@@ -184,6 +189,13 @@
         .action-item {
             background-color: white;
             
+        }
+        .action-btns {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn {
+            margin: 5px 5px 0 5px;
         }
        
       </style>
@@ -271,8 +283,12 @@
         </fieldset>
 
         <fieldset>
-            <legend>Additional infomation</legend>
+            <legend>Actions</legend>
+            <div class="action-btns">
+                    <button class="btn btn-add-selected">Add to selected</button>
+                    <button class="btn btn-add-clear">Clear selected</button>  
             
+            </div>
         </fieldset>
         
     </nav>
@@ -284,8 +300,8 @@
         <div class="grid-container">
             <div class="grid-header">
                 <div class="grid-item-header">
-                    <div>
-                        <input type="checkbox" class="grid-header-inbox inbox">
+                    <div class="checkbox" id="1">
+                        <input type="checkbox" class="grid-header-inbox inbox" id="checkbox1">
                           <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></span>
                     </div>
@@ -305,14 +321,16 @@
                 
             </div>  
             <div class="action-window">
-                <div class="action-header">Selected items</div>
+                <div class="action-header">
+                    <div class="action-header-text">Selected items</div>
+                    <div class="action-header-text">Show/Hide</div>
+                </div>
                 <div class="action-body">
                     <div class="action-body-header">
                         <div class="action-item">Barcode</div>
                         <div class="action-item">Location</div>
                         <div class="action-item">Part number</div>
                         <div class="action-item">Serial number</div>
-
                     </div>
                 </div>
             </div>
@@ -331,10 +349,14 @@
     const searchFilterThreeText=document.getElementById("search-filter-3-text").value;
     const searchFilterFourText=document.getElementById("search-filter-4-text").value;
     const searchFilterFiveTExt=document.getElementById("search-filter-5-text").value;
+
     const btnSearch=document.querySelector(".btn-search");
+    const btnAddSelected=document.querySelector(".btn-add-selected");
+    const checkboxInput=document.querySelector(".inbox3");
+    // console.log(checkboxInput);
     
     
-    
+    //Button actions
     btnSearch.addEventListener('click', function(e){
       e.preventDefault()
       document.querySelector('.search_result').textContent=`Searching...`;
@@ -343,6 +365,40 @@
       document.querySelector('.grid-body').innerHTML=""
       loadData(searchFilterOne, searchFilterOneText)
     })
+
+    btnAddSelected.addEventListener('click', function(e){
+        e.preventDefault()
+        addSelected()
+        
+    })
+
+    
+    //checkbox event
+    // let selected=[];
+    //     checkboxInput.forEach(function(checkbox){
+    //     checkbox.addEventListener('change', function(e){
+    //     // e.preventDefault();
+    //     selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
+    //   .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+    //   .map(i => i.value) // Use Array.map to extract only the checkbox values from the array of objects.
+      
+    //     console.log(selected)
+        
+    //     })
+  
+    // })
+    // let selected=[];
+    //     checkboxInput.forEach(function(checkbox){
+    //         checkbox.addEventListener('change', function(e){
+    //             console.log(e.target);
+    //         })
+    //     })
+
+    // functions
+    // function addSelected(){
+    //     console.log(document.getElementById("checkbox1").checked);
+    //     if (document.getElementById("checkbox1").checked) console.log('checked');
+    // }
     
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
     
@@ -385,12 +441,13 @@
             let table=document.querySelector('.grid-body')
             
             for (let i=0; i<data.length; i++){
-              let row=`<div class="grid-row"><div class="grid-item-body">
-                            <input type="checkbox" class="grid-header-inbox inbox">
+              let row=`<div class="grid-row"><div class="grid-item-body checkbox" id="${i}">
+                            <input type="checkbox" class="grid-header-inbox inbox3" >
                             <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></span>
                         </div>
-                        <div class="grid-item-body">${data[i].Row}</div>
+                        
+                        <div class="grid-item-body row">${data[i].Row}</div>
                         <div class="grid-item-body">${data[i].Location}</div>
                         <div class="grid-item-body">${data[i].Barcode}</div>
                         <div class="grid-item-body">${data[i].Parent_barcode}</div>
@@ -402,7 +459,27 @@
 
               table.innerHTML+=row
             }
-    
+            //checkbox event
+            const checkboxInput=document.querySelectorAll(".inbox3");
+            let selected=[];
+            checkboxInput.forEach(function(checkbox){
+            checkbox.addEventListener('change', function(e){
+            selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
+            .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+            .map(i => i.parentNode.parentNode.childNodes[2].innerHTML) // Use Array.map to extract only the checkbox values from the array of objects.
+            console.log(selected)
+        })
+            
+            
+            })
+            // let selected=[];
+            // checkboxInput.forEach(function(checkbox){
+            //     checkbox.addEventListener('change', function(e){
+            //         console.log(e.target.parentNode.parentNode.childNodes[2].innerHTML);
+            //         selected+=e.target.parentNode.parentNode.childNodes[2].innerHTML
+            //     })
+            // })
+        
           }
         
         </script>
