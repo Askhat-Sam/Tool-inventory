@@ -170,6 +170,7 @@
             width: 500px;
             filter: drop-shadow(-4px -4px 4px hsla(0, 0%, 0%, 0.163));
             border: 1px solid rgb(112, 112, 112);
+            overflow: auto;
         }
         .action-header {
             display: flex;
@@ -185,10 +186,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
             grid-gap: 1px;
+            
         }
         .action-item {
-            background-color: white;
-            
+            background-color: cadetblue;
         }
         .action-btns {
             display: flex;
@@ -196,6 +197,14 @@
         }
         .btn {
             margin: 5px 5px 0 5px;
+        }
+        .action-body-body{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 1px;
+        }
+        .selected-body {
+            background-color: white;
         }
        
       </style>
@@ -332,6 +341,9 @@
                         <div class="action-item">Part number</div>
                         <div class="action-item">Serial number</div>
                     </div>
+                    <div class="action-body-body">
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -368,37 +380,12 @@
 
     btnAddSelected.addEventListener('click', function(e){
         e.preventDefault()
+        document.querySelector('.action-body-body').innerHTML=""
         addSelected()
         
     })
 
-    
-    //checkbox event
-    // let selected=[];
-    //     checkboxInput.forEach(function(checkbox){
-    //     checkbox.addEventListener('change', function(e){
-    //     // e.preventDefault();
-    //     selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
-    //   .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
-    //   .map(i => i.value) // Use Array.map to extract only the checkbox values from the array of objects.
-      
-    //     console.log(selected)
-        
-    //     })
-  
-    // })
-    // let selected=[];
-    //     checkboxInput.forEach(function(checkbox){
-    //         checkbox.addEventListener('change', function(e){
-    //             console.log(e.target);
-    //         })
-    //     })
-
-    // functions
-    // function addSelected(){
-    //     console.log(document.getElementById("checkbox1").checked);
-    //     if (document.getElementById("checkbox1").checked) console.log('checked');
-    // }
+   
     
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
     
@@ -408,7 +395,7 @@
     
     
           let data;
-          
+          let selected=[];
           async function loadData() {
           const searchFilterOne=document.getElementById("search-filter-1").value;
           const searchFilterOneText=document.getElementById("search-filter-1-text").value;
@@ -421,14 +408,15 @@
               authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI'
             } 
           });
+          
+
           let query1 = supabase
             .from('toolDB')
             .select('*')
           
             let query=searchFilterOneText ? query1.like(searchFilterOne, `%${searchFilterOneText}%`) : query1
                 query=searchFilterOneText&&searchFilterTwoText ? query1.like(searchFilterOne, `%${searchFilterOneText}%`).like(searchFilterTwo, `%${searchFilterTwoText}%`) : query1
-           
-           
+
           const { data, error } = await query //Here to change to query
             buildTable(data)
             document.querySelector('.search_result').textContent=`Result found: ${data.length}`;
@@ -459,29 +447,74 @@
 
               table.innerHTML+=row
             }
+            
             //checkbox event
             const checkboxInput=document.querySelectorAll(".inbox3");
-            let selected=[];
+            
             checkboxInput.forEach(function(checkbox){
             checkbox.addEventListener('change', function(e){
-            selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
-            .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
-            .map(i => i.parentNode.parentNode.childNodes[2].innerHTML) // Use Array.map to extract only the checkbox values from the array of objects.
-            console.log(selected)
-        })
-            
-            
+                selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
+                .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+                .map(i => +i.parentNode.parentNode.childNodes[2].innerHTML) // Use Array.map to extract only the checkbox values from the array of objects.
+                console.log(selected)
+                
+                })
             })
-            // let selected=[];
-            // checkboxInput.forEach(function(checkbox){
-            //     checkbox.addEventListener('change', function(e){
-            //         console.log(e.target.parentNode.parentNode.childNodes[2].innerHTML);
-            //         selected+=e.target.parentNode.parentNode.childNodes[2].innerHTML
-            //     })
-            // })
-        
+            
           }
+
+          function addSelected(){
+          const res= fetch('https://aevibblwimzhlpidnbnn.supabase.co/rest/v1/toolDB',{
+            headers: {
+              apikey:'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI',
+              authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFldmliYmx3aW16aGxwaWRuYm5uIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzY3ODIzNzYsImV4cCI6MTk5MjM1ODM3Nn0.mT7nMMcTkYMemGYzLK79JB2qhUxPVF8k_qFzsqYhfJI'
+            } 
+          });
+
+          res.then(response=>{
+            return response.json()
+          }).then(res=>{
+            const data3=res
+            console.log(data3);
+            const filteredArr= data3.filter(row=>selected.includes(row.Row));
+            console.log(filteredArr);
+
+            let tableSelected=document.querySelector('.action-body-body')
+            
+            for (let i=0; i<filteredArr.length; i++){
+                let row=`
+                        <div class="selected-body">${filteredArr[i].Barcode}</div>
+                        <div class="selected-body">${filteredArr[i].Location}</div>
+                        <div class="selected-body">${filteredArr[i].Part_number}</div>
+                        <div class="selected-body">${filteredArr[i].Serial_number}</div>`
+                tableSelected.innerHTML+=row
+            }
+        })
+    }
+
+           // functions
+        // function addSelected(){
+        //     //getting certain rows from Supabase
+          
+        // //   const data3= await res.json()
+        //   console.log(data3);
+        //   localStorage.setItem('testObject', JSON.stringify(data3));
+        //   console.log(selected)
+        //   const filteredArr= data3.filter(row=>selected.includes(row.Row));
+        //   console.log(filteredArr);
+        // }
         
         </script>
     
 </html>
+
+<!-- // functions
+         async function addSelected(){
+            //getting certain rows from Supabase
+          
+          const data3= await res.json()
+          console.log(data3);
+          localStorage.setItem('testObject', JSON.stringify(data3));
+          console.log(selected)
+          const filteredArr= data3.filter(row=>selected.includes(row.Row));
+          console.log(filteredArr); -->
