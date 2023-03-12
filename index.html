@@ -162,6 +162,26 @@
         .search_result {
             font-weight: bold;
         }
+        
+        .action-item {
+            background-color: cadetblue;
+        }
+        .action-btns {
+            display: flex;
+            flex-direction: column;
+        }
+        .btn {
+            margin: 5px 5px 0 5px;
+        }
+        .action-body-body{
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 1px;
+        }
+        .selected-body {
+            background-color: white;
+        }
+        /* Action window */
         .action-window {
             background-color: antiquewhite;
             position: fixed;
@@ -181,6 +201,7 @@
         .action-body {
             background-color: #979797;
             height: 100px;
+            display: none;
         }
         .action-body-header {
             display: grid;
@@ -188,24 +209,11 @@
             grid-gap: 1px;
             
         }
-        .action-item {
-            background-color: cadetblue;
+        .hide {
+          display: none;
         }
-        .action-btns {
-            display: flex;
-            flex-direction: column;
-        }
-        .btn {
-            margin: 5px 5px 0 5px;
-        }
-        .action-body-body{
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-gap: 1px;
-        }
-        .selected-body {
-            background-color: white;
-        }
+       
+
        
       </style>
 </head>
@@ -332,15 +340,18 @@
             <div class="action-window">
                 <div class="action-header">
                     <div class="action-header-text">Selected items</div>
-                    <div class="action-header-show">Show/Hide</div>
+                    <div class="action-header-show">Show</div>
                 </div>
-                <div class="action-body">
-                    <div class="action-body-header">
-                        <div class="action-item">Barcode</div>
-                        <div class="action-item">Location</div>
-                        <div class="action-item">Part number</div>
-                        <div class="action-item">Serial number</div>
+                
+                  <div class="action-body">
+                      <div class="action-body-header">
+                          <div class="action-item">Barcode</div>
+                          <div class="action-item">Location</div>
+                          <div class="action-item">Part number</div>
+                          <div class="action-item">Serial number</div>
+                      </div>
                     </div>
+                
                     <div class="action-body-body">
 
                     </div>
@@ -361,10 +372,15 @@
     const searchFilterThreeText=document.getElementById("search-filter-3-text").value;
     const searchFilterFourText=document.getElementById("search-filter-4-text").value;
     const searchFilterFiveTExt=document.getElementById("search-filter-5-text").value;
+    const actionWindow=document.querySelector(".action-window")
+    const actionBody=document.querySelector(".action-body")
+    const actionHeader=document.querySelector(".action-header")
+     
 
     const btnSearch=document.querySelector(".btn-search");
     const btnAddSelected=document.querySelector(".btn-add-selected");
     const checkboxInput=document.querySelector(".inbox3");
+    const showBtn=document.querySelector(".action-header-show");
     // console.log(checkboxInput);
     
     
@@ -383,6 +399,13 @@
         document.querySelector('.action-body-body').innerHTML=""
         addSelected()
         
+    })
+
+    //Show/hide window Selected
+    showBtn.addEventListener("click", function(){
+      showBtn.innerHTML=="Hide"?showBtn.innerHTML="Show":showBtn.innerHTML="Hide"
+      actionBody.style.display=(actionBody.style.display!="block")?"block":"none"
+      
     })
 
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
