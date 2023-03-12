@@ -332,7 +332,7 @@
             <div class="action-window">
                 <div class="action-header">
                     <div class="action-header-text">Selected items</div>
-                    <div class="action-header-text">Show/Hide</div>
+                    <div class="action-header-show">Show/Hide</div>
                 </div>
                 <div class="action-body">
                     <div class="action-body-header">
@@ -385,8 +385,6 @@
         
     })
 
-   
-    
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
     
     const supabaseUrl = 'https://aevibblwimzhlpidnbnn.supabase.co'
@@ -489,32 +487,11 @@
                         <div class="selected-body">${filteredArr[i].Serial_number}</div>`
                 tableSelected.innerHTML+=row
             }
+            //Update header of window "Selected"
+            document.querySelector(".action-header-text").innerHTML=`Selected items: ${filteredArr.length}`
         })
     }
 
-           // functions
-        // function addSelected(){
-        //     //getting certain rows from Supabase
-          
-        // //   const data3= await res.json()
-        //   console.log(data3);
-        //   localStorage.setItem('testObject', JSON.stringify(data3));
-        //   console.log(selected)
-        //   const filteredArr= data3.filter(row=>selected.includes(row.Row));
-        //   console.log(filteredArr);
-        // }
-        
         </script>
     
 </html>
-
-<!-- // functions
-         async function addSelected(){
-            //getting certain rows from Supabase
-          
-          const data3= await res.json()
-          console.log(data3);
-          localStorage.setItem('testObject', JSON.stringify(data3));
-          console.log(selected)
-          const filteredArr= data3.filter(row=>selected.includes(row.Row));
-          console.log(filteredArr); -->
