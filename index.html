@@ -104,15 +104,21 @@
             margin-top: 10px;
             /* width: 100%; */
             box-sizing: border-box;
-            
+    
         }
         .grid-header {
             display: grid;
             background-color: black;
             border: 1px solid black;
-            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
+            grid-template-columns: 50px 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
             grid-gap: 1px;
             font-weight: bold;
+        }
+        .grid-header-inbox {
+          width: 12px;
+        }
+        .edit {
+          width: 12px;
         }
         .grid-body {
             background-color: rgb(146, 146, 146);
@@ -120,7 +126,7 @@
         }
         .grid-row {
             display: grid;
-            grid-template-columns: 0.35fr 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
+            grid-template-columns: 50px 0.25fr 0.5fr 1fr 1fr 1fr  1fr 1fr 1fr 1fr;
             grid-gap: 1px;
             border-left: 1px solid rgb(146, 146, 146);
             border-right: 1px solid rgb(146, 146, 146);
@@ -157,7 +163,7 @@
             background-color: rgb(255, 255, 255) !important;
         }
         .grid-row:hover>div {
-            background-color: #edeff0 !important;
+            background-color: #c9cbcc !important;
         }
         .search_result {
             font-weight: bold;
@@ -179,7 +185,7 @@
             grid-gap: 1px;
         }
         .selected-body {
-            background-color: white;
+          background-color: #f8f3e4;
         }
         /* Action window */
         .action-window {
@@ -200,21 +206,21 @@
         }
         .action-body {
             background-color: #979797;
-            height: 100px;
-            display: none;
+            /* height: 100px; */
+            
         }
         .action-body-header {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
-            grid-gap: 1px;
-            
+            grid-gap: 1px; 
         }
         .hide {
           display: none;
         }
-       
-
-       
+        .selectedContainer{
+          display: none;
+        }
+        
       </style>
 </head>
 <body>
@@ -223,7 +229,7 @@
     <nav >
       <div class="nav-block search-block center">
         <fieldset>
-            <legend>Search</legend>
+            <legend>Search filters</legend>
             <form >
                 <p class="text-element">
                   <select name="type" id="search-filter-1">
@@ -296,6 +302,7 @@
                   <input type="text" id="search-filter-5-text" name="lname">
                 </p>
                 <button class="btn-search">Search</button>
+                <button class="btn-reset">Reset filters</button>
               </form>
         </fieldset>
 
@@ -303,8 +310,8 @@
             <legend>Actions</legend>
             <div class="action-btns">
                     <button class="btn btn-add-selected">Add to selected</button>
-                    <button class="btn btn-add-clear">Clear selected</button>  
-            
+                    <button class="btn btn-add-clear">Clear selected</button> 
+                    <button class="btn btn-add-test">Test</button> 
             </div>
         </fieldset>
         
@@ -338,11 +345,12 @@
                 
             </div>  
             <div class="action-window">
+              
                 <div class="action-header">
-                    <div class="action-header-text">Selected items</div>
+                    <div class="action-header-text">Selected items: 0</div>
                     <div class="action-header-show">Show</div>
                 </div>
-                
+                <div class="selected-container">
                   <div class="action-body">
                       <div class="action-body-header">
                           <div class="action-item">Barcode</div>
@@ -352,9 +360,8 @@
                       </div>
                     </div>
                 
-                    <div class="action-body-body">
-
-                    </div>
+                    <div class="action-body-body"></div>
+                  </div>
                 </div>
             </div>
         </div>
@@ -375,15 +382,19 @@
     const actionWindow=document.querySelector(".action-window")
     const actionBody=document.querySelector(".action-body")
     const actionHeader=document.querySelector(".action-header")
+    const selectedContainer=document.querySelector(".selected-container")
      
 
     const btnSearch=document.querySelector(".btn-search");
+    const btnReset=document.querySelector(".btn-reset");
     const btnAddSelected=document.querySelector(".btn-add-selected");
+    const btnClear=document.querySelector(".btn-add-clear");
+    const btnTest=document.querySelector(".btn-add-test");
     const checkboxInput=document.querySelector(".inbox3");
     const showBtn=document.querySelector(".action-header-show");
     // console.log(checkboxInput);
     
-    
+    let selectedBackup=[]
     //Button actions
     btnSearch.addEventListener('click', function(e){
       e.preventDefault()
@@ -392,21 +403,64 @@
       const searchFilterOneText=document.getElementById("search-filter-1-text").value;
       document.querySelector('.grid-body').innerHTML=""
       loadData(searchFilterOne, searchFilterOneText)
+      console.log(selected);
+      selectedBackup=selected
+      console.log(selectedBackup);
+    })
+
+    btnReset.addEventListener('click', function(){
+
     })
 
     btnAddSelected.addEventListener('click', function(e){
         e.preventDefault()
         document.querySelector('.action-body-body').innerHTML=""
-        addSelected()
-        
+        addSelected()    
+    })
+
+    btnClear.addEventListener('click', function(e){
+        e.preventDefault()
+        document.querySelector('.action-body-body').innerHTML=""
+        document.querySelector(".action-header-text").innerHTML=`Selected items: 0`
     })
 
     //Show/hide window Selected
     showBtn.addEventListener("click", function(){
       showBtn.innerHTML=="Hide"?showBtn.innerHTML="Show":showBtn.innerHTML="Hide"
-      actionBody.style.display=(actionBody.style.display!="block")?"block":"none"
+      selectedContainer.style.display=(selectedContainer.style.display!="block")?"block":"none"
       
     })
+
+    //Return checked checkboxes
+
+    function recoverCheckbox(selected){
+      const rowAll=document.querySelectorAll(".inbox3");
+      rowAll.forEach(function(row){
+        // console.log(row);
+      })
+    }
+
+    btnTest.addEventListener('click', function(){
+      recoverCheckbox(selected)
+    })
+
+     //checkbox event
+     
+     // //checkbox event
+            // const checkboxInput=document.querySelectorAll(".inbox3");
+            // checkboxInput.forEach(function(checkbox){
+            // checkbox.addEventListener('change', function(e){
+            //     selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
+            //     .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+            //     .map(i => +i.parentNode.parentNode.childNodes[2].innerHTML) // Use Array.map to extract only the checkbox values from the array of objects.
+            //     console.log(selected)
+                
+            //     })
+            //     console.log(checkbox)
+            //     // if (document.querySelector)console.log(checkbox);
+            // })
+            
+           
 
     import { createClient } from 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm'
     
@@ -451,7 +505,7 @@
             
             for (let i=0; i<data.length; i++){
               let row=`<div class="grid-row"><div class="grid-item-body checkbox" id="${i}">
-                            <input type="checkbox" class="grid-header-inbox inbox3" >
+                            ${selectedBackup.includes(data[i].Row)?`<input type="checkbox" class="grid-header-inbox inbox3" id="@${i}" checked>`:`<input type="checkbox" class="grid-header-inbox inbox3" id="@${i}">`}
                             <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="edit">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" /></svg></span>
                         </div>
@@ -469,9 +523,8 @@
               table.innerHTML+=row
             }
             
-            //checkbox event
+            // //checkbox event
             const checkboxInput=document.querySelectorAll(".inbox3");
-            
             checkboxInput.forEach(function(checkbox){
             checkbox.addEventListener('change', function(e){
                 selected=Array.from(checkboxInput) // Convert checkboxes to an array to use filter and map.
@@ -480,7 +533,19 @@
                 console.log(selected)
                 
                 })
+                // console.log(checkbox)
+                // if (document.querySelector)console.log(checkbox);
             })
+            // const checkbox1 = document.querySelector(".inbox3")
+            // console.log(checkbox1);
+
+            // checkbox1.addEventListener('change', (event) => {
+            //   if (event.currentTarget.checked) {
+            //     alert('checked');
+            //   } else {
+            //     alert('not checked');
+            //   }
+            // })
             
           }
 
@@ -512,9 +577,10 @@
             }
             //Update header of window "Selected"
             document.querySelector(".action-header-text").innerHTML=`Selected items: ${filteredArr.length}`
+
         })
     }
-
+    
         </script>
     
 </html>
